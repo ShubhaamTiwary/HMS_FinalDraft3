@@ -24,7 +24,7 @@ const RoomAllocation = () => {
 
     const getStudentsRoomMap = async () => {
         try {
-            const response = await fetch(`http://localhost:7000/get_allocated_students_for_room_allocation?hostel_id=${state.ans}`, {
+            const response = await fetch(`https://hms-finaldraft3.onrender.com/get_allocated_students_for_room_allocation?hostel_id=${state.ans}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
@@ -41,7 +41,7 @@ const RoomAllocation = () => {
 
     const getStudents = async () => {
         try {
-            const response = await fetch(`http://localhost:7000/get_students_for_room_allocation?hostel_id=${state.ans}`, {
+            const response = await fetch(`https://hms-finaldraft3.onrender.com/get_students_for_room_allocation?hostel_id=${state.ans}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
@@ -58,7 +58,7 @@ const RoomAllocation = () => {
 
     const getRooms = async () => {
         try {
-            const response = await fetch(`http://localhost:7000/get_room_details_for_room_allocation?hostel_id=${state.ans}`, {
+            const response = await fetch(`https://hms-finaldraft3.onrender.com/get_room_details_for_room_allocation?hostel_id=${state.ans}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
@@ -82,7 +82,7 @@ const RoomAllocation = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try {
-            axios.post('http://localhost:7000/temporary_api_for_checking_data', [allStudentRoomMap,allRooms,state])
+            axios.post('https://hms-finaldraft3.onrender.com/temporary_api_for_checking_data', [allStudentRoomMap,allRooms,state])
             .then((response) => {
                 console.log('API response:', response.data);
                 navigate(-1);
@@ -354,7 +354,7 @@ const RoomAllocation = () => {
                                                             readonly
                                                             type="text"
                                                             disabled={true}
-                                                            value={allStudentRoomMap[item[0].toString()]?.room_no}
+                                                            value={allStudentRoomMap ? allStudentRoomMap[item[0].toString()]?.room_no :null}
                                                         />
                                                         <button className='text-red-500 font-semibold mb-1' onClick={(e)=>
                                                             {
